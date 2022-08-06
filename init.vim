@@ -28,29 +28,33 @@ nnoremap <leader>cc :source $MYVIMRC<CR>  " source config
 nnoremap <leader>ec :edit   $MYVIMRC<CR>  " edit config
 nnoremap <leader>sc :split  $MYVIMRC<CR>  " edit config (split)
 nnoremap <leader>vc :vsplit $MYVIMRC<CR>  " edit config (v split)
-
+" {{{
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
 vnoremap <leader>" <esc>`>a"<esc>`<i"<esc>`<v`> 
 nnoremap H 0
 nnoremap L $
+" }}}
 
 " Cruel Mappings ========== {{{
-"inoremap jk <esc>
-"inoremap <esc> <nop>
-"inoremap <Up> <nop>
-"inoremap <Down> <nop>
-"inoremap <Left> <nop>
-"inoremap <Right> <nop>
-"nnoremap <Up> <nop>
-"nnoremap <Down> <nop>
-"nnoremap <Left> <nop>
-"nnoremap <Right> <nop>
+let cruel=0 " someday...
+if cruel
+  inoremap jk <esc>
+  inoremap <esc> <nop>
+  inoremap <Up> <nop>
+  inoremap <Down> <nop>
+  inoremap <Left> <nop>
+  inoremap <Right> <nop>
+  nnoremap <Up> <nop>
+  nnoremap <Down> <nop>
+  nnoremap <Left> <nop>
+  nnoremap <Right> <nop>
+endif
 " }}}
 
 " VimScript settings {{{
 augroup filetype_vim
-  augroup!
+  autocmd!
   autocmd FileType vim setlocal foldmethod=marker
   autocmd FileType vim setlocal foldlevelstart=1
 augroup END

@@ -52,6 +52,7 @@ nnoremap L $
 augroup filetype_vim
   augroup!
   autocmd FileType vim setlocal foldmethod=marker
+  autocmd FileType vim setlocal foldlevelstart=1
 augroup END
 " }}}
 

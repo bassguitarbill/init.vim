@@ -123,10 +123,10 @@ call plug#begin()
   Plug 'timonv/vim-cargo'   " Cargo for Rust
 
   Plug 'vim-airline/vim-airline' " Pretty statusline
-  Plug 'vim-airline/vim-airline-themes' " Prettier statusline
+  Plug 'bassguitarbill/vim-airline-themes' " Prettier statusline
 
   Plug 'ctrlpvim/ctrlp.vim' " Fuzzy finder
-  
+
   Plug 'edkolev/tmuxline.vim' " Style tmux to look like airline
 call plug#end()
 " }}}
@@ -150,6 +150,6 @@ endfunction
 " }}}
 
 " Theming ========== {{{
-let g:airline_theme='sol'
+let g:airline_theme='luna'
 " }}}
 

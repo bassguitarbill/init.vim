@@ -31,13 +31,19 @@ set clipboard=unnamedplus   " using system clipboard
 
 let mapleader=" "
 
-nnoremap <leader>h  :nohlsearch<CR>       " disable highlight
+nnoremap <leader>h  :nohlsearch<CR>     " disable highlight
+nnoremap <leader>b :ls<CR>:b<Space>     " display a list of open buffers
+nnoremap H 0    "   warp to the beginning of the line
+nnoremap L $    "   warp to the end of the line
 
+" === === Vim Config commands === === {{{
 nnoremap <leader>cc :source $MYVIMRC<CR>  " source config
 nnoremap <leader>ec :edit   $MYVIMRC<CR>  " edit config
 nnoremap <leader>sc :split  $MYVIMRC<CR>  " edit config (split)
 nnoremap <leader>vc :vsplit $MYVIMRC<CR>  " edit config (v split)
+" }}}
 
+" === === Edit Notes commands === === {{{
 nnoremap <leader>no     :call EditNotes(":edit")<CR>
 nnoremap <leader>sno    :call EditNotes(":split")<CR>
 nnoremap <leader>vno    :call EditNotes(":vsplit")<CR>
@@ -49,18 +55,15 @@ function EditNotes(command)
   setlocal foldcolumn=4
   setlocal foldignore=
 endfunction
+" }}}
 
-nnoremap <leader>b :ls<CR>:b<Space>
-
-" {{{
+" === === Quote selected words === === {{{
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
 vnoremap <leader>" <esc>`>a"<esc>`<i"<esc>`<v`>l
-nnoremap H 0
-nnoremap L $
 " }}}
 
-" Cruel Mappings ========== {{{
+" === === Cruel Mappings === === {{{
 let cruel=0 " someday...
 if cruel
   inoremap jk <esc>
@@ -76,15 +79,16 @@ if cruel
 endif
 " }}}
 
-" VimScript settings {{{
+" === === VimScript settings === === {{{
 augroup filetype_vim
   autocmd!
   autocmd FileType vim setlocal foldmethod=marker
   autocmd FileType vim setlocal foldlevelstart=1
+  autocmd FileType vim nnoremap <buffer> <localleader>c I"<esc>
 augroup END
 " }}}
 
-" JavaScript and TypeScript settings ---------- {{{
+" === === JavaScript and TypeScript settings === === {{{
 augroup filetype_js_ts
   autocmd!
   autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
@@ -100,17 +104,29 @@ augroup filetype_js_ts
 augroup END
 " }}}
 
-autocmd FileType rust nnoremap <buffer> <localleader>c I//<esc>
-autocmd FileType ruby nnoremap <buffer> <localleader>c I#<esc>
-autocmd FileType ruby iabbrev fsl #frozen_string_literal: true  " appease rubocop
-autocmd FileType vim nnoremap <buffer> <localleader>c I"<esc>
+" === === Rust settings === === {{{
+augroup filetype_rust
+  autocmd!
+  autocmd FileType rust nnoremap <buffer> <localleader>c I//<esc>
+augroup END
+" }}}
 
+" === === Ruby settings === === {{{
+augroup filetype_ruby
+  autocmd!
+  autocmd FileType ruby nnoremap <buffer> <localleader>c I#<esc>
+  autocmd FileType ruby iabbrev fsl #frozen_string_literal: true  " appease rubocop
+augroup END
+" }}}
+
+" === === HTML settings === === {{{
 augroup filetype_html
   autocmd!
   autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
 augroup END
+" }}}
 
-" Plugs ------------------- {{{
+" === === Plugs === === {{{
 call plug#begin()
   Plug 'neoclide/coc.nvim', {'branch': 'release'} " Turns Vim into an IDE
   let g:coc_global_extensions = ['coc-tsserver']
@@ -128,10 +144,11 @@ call plug#begin()
   Plug 'ctrlpvim/ctrlp.vim' " Fuzzy finder
 
   Plug 'edkolev/tmuxline.vim' " Style tmux to look like airline
+  Plug 'edkolev/promptline.vim' " Style zsh to look like airline
 call plug#end()
 " }}}
 
-" Coc Customization ------------ {{{
+" === === Coc Customization === === {{{
 highlight FgCocErrorFloatBgCocFloating guifg=#800000
 highlight FgCocErrorFloatBgCocFloating ctermfg=88 " DarkRed
 highlight FgCocHintFloatBgCocFloating guifg=#000000
@@ -149,7 +166,7 @@ function! ShowDocumentation()
 endfunction
 " }}}
 
-" Theming ========== {{{
+" === === Theming === === {{{
 let g:airline_theme='luna'
 " }}}
 

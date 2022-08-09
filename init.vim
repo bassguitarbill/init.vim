@@ -1,4 +1,8 @@
 set nocompatible
+set showmatch               " show matching
+set ignorecase              " case insensitive
+set hlsearch                " highlight search
+set incsearch               " incremental search
 
 syntax on
 
@@ -19,6 +23,11 @@ set autoindent
 
 set number relativenumber
 set nu rnu
+
+set wildmode=longest,list   " get bash-like tab completions
+"set cc=80                  " set an 80 column border for good coding style
+set ttyfast                 " Speed up scrolling in Vim
+set clipboard=unnamedplus   " using system clipboard
 
 let mapleader=" "
 
@@ -99,17 +108,22 @@ endfunction
 
 " Plugs ------------------- {{{
 call plug#begin()
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'neoclide/coc.nvim', {'branch': 'release'} " Turns Vim into an IDE
   let g:coc_global_extensions = ['coc-tsserver']
 
-  Plug 'preservim/nerdtree'
+  Plug 'tpope/vim-fugitive' " Git integration
+  Plug 'tpope/vim-rails'    " Hotkeys for Rails
 
-  Plug 'tpope/vim-fugitive'
+  Plug 'preservim/nerdtree' " Directory viewer
 
-  Plug 'timonv/vim-cargo'
+  Plug 'timonv/vim-cargo'   " Cargo for Rust
 
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
+  Plug 'vim-airline/vim-airline' " Pretty statusline
+  Plug 'vim-airline/vim-airline-themes' " Prettier statusline
+
+  Plug 'ctrlpvim/ctrlp.vim' " Fuzzy finder
+  
+  Plug 'edkolev/tmuxline.vim' " Style tmux to look like airline
 call plug#end()
 " }}}
 

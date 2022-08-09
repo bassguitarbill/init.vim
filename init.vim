@@ -28,6 +28,11 @@ nnoremap <leader>cc :source $MYVIMRC<CR>  " source config
 nnoremap <leader>ec :edit   $MYVIMRC<CR>  " edit config
 nnoremap <leader>sc :split  $MYVIMRC<CR>  " edit config (split)
 nnoremap <leader>vc :vsplit $MYVIMRC<CR>  " edit config (v split)
+
+nnoremap <leader>no :edit ~/notes<CR>:call FoldNotes()<CR>
+nnoremap <leader>sno :split ~/notes<CR>:call FoldNotes()<CR>
+nnoremap <leader>vno :vsplit ~/notes<CR>:call FoldNotes()<CR>
+
 " {{{
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
@@ -85,6 +90,12 @@ augroup filetype_html
   autocmd!
   autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
 augroup END
+
+function FoldNotes()
+  setlocal foldmethod=indent
+  setlocal foldcolumn=4
+  setlocal foldignore=
+endfunction
 
 " Plugs ------------------- {{{
 call plug#begin()

@@ -38,14 +38,24 @@ nnoremap <leader>ec :edit   $MYVIMRC<CR>  " edit config
 nnoremap <leader>sc :split  $MYVIMRC<CR>  " edit config (split)
 nnoremap <leader>vc :vsplit $MYVIMRC<CR>  " edit config (v split)
 
-nnoremap <leader>no :edit ~/notes<CR>:call FoldNotes()<CR>
-nnoremap <leader>sno :split ~/notes<CR>:call FoldNotes()<CR>
-nnoremap <leader>vno :vsplit ~/notes<CR>:call FoldNotes()<CR>
+nnoremap <leader>no     :call EditNotes(":edit")<CR>
+nnoremap <leader>sno    :call EditNotes(":split")<CR>
+nnoremap <leader>vno    :call EditNotes(":vsplit")<CR>
+
+let s:notes_location=$HOME . "/notes"
+function EditNotes(command)
+  execute a:command . " " . s:notes_location
+  setlocal foldmethod=indent
+  setlocal foldcolumn=4
+  setlocal foldignore=
+endfunction
+
+nnoremap <leader>b :ls<CR>:b<Space>
 
 " {{{
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
-vnoremap <leader>" <esc>`>a"<esc>`<i"<esc>`<v`> 
+vnoremap <leader>" <esc>`>a"<esc>`<i"<esc>`<v`>l
 nnoremap H 0
 nnoremap L $
 " }}}
@@ -92,19 +102,13 @@ augroup END
 
 autocmd FileType rust nnoremap <buffer> <localleader>c I//<esc>
 autocmd FileType ruby nnoremap <buffer> <localleader>c I#<esc>
-autocmd FileType ruby niabbrev fsl #frozen_string_literal: true  " appease rubocop
+autocmd FileType ruby iabbrev fsl #frozen_string_literal: true  " appease rubocop
 autocmd FileType vim nnoremap <buffer> <localleader>c I"<esc>
 
 augroup filetype_html
   autocmd!
   autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
 augroup END
-
-function FoldNotes()
-  setlocal foldmethod=indent
-  setlocal foldcolumn=4
-  setlocal foldignore=
-endfunction
 
 " Plugs ------------------- {{{
 call plug#begin()

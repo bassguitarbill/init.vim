@@ -31,8 +31,10 @@ set clipboard=unnamedplus   " using system clipboard
 
 let mapleader=" "
 
-nnoremap <leader>h  :nohlsearch<CR>     " disable highlight
-nnoremap <leader>b :ls<CR>:b<Space>     " display a list of open buffers
+" disable highlight
+nnoremap <leader>h  :nohlsearch<CR>
+" display a list of open buffers
+nnoremap <leader>b :ls<CR>:b<Space>
 nnoremap H 0    "   warp to the beginning of the line
 nnoremap L $    "   warp to the end of the line
 
@@ -95,7 +97,7 @@ augroup filetype_js_ts
   autocmd FileType javascript iabbrev <buffer> iff if ()<Left>
   autocmd FileType javascript iabbrev <buffer> fn function()<Left>
   "autocmd FileType javascript iabbrev <buffer> function NOPEDONTDOIT
-  autocmd FileType react iabbrev rct import React from 'react';<CR>import PropTypes from 'prop-types';<CR><CR>export default function
+  autocmd FileType javascriptreact iabbrev rct import React from 'react';<CR>import PropTypes from 'prop-types';<CR><CR>export default function
 " autocmd BufNewFile *.jsx import React from 'react';<CR>import PropTypes from 'prop-types';<CR><CR>export default function
 
   autocmd FileType typescript nnoremap <buffer> <localleader>c I//<esc>
@@ -115,7 +117,7 @@ augroup END
 augroup filetype_ruby
   autocmd!
   autocmd FileType ruby nnoremap <buffer> <localleader>c I#<esc>
-  autocmd FileType ruby iabbrev fsl #frozen_string_literal: true  " appease rubocop
+  autocmd FileType ruby iabbrev fsl # frozen_string_literal: true
 augroup END
 " }}}
 
@@ -145,6 +147,8 @@ call plug#begin()
 
   Plug 'edkolev/tmuxline.vim' " Style tmux to look like airline
   Plug 'edkolev/promptline.vim' " Style zsh to look like airline
+  Plug 'powerline/powerline-fonts'
+  let g:tmuxline_powerline_separators = 1
 call plug#end()
 " }}}
 

@@ -152,7 +152,9 @@ call plug#begin()
   let g:tmuxline_powerline_separators = 1
 
   Plug 'ngmy/vim-rubocop'
-  let g:vimrubocop_rubocop_cmd='bin/rubocop '
+  if stridx(getcwd(), "nitro-web") >= 0
+    let g:vimrubocop_rubocop_cmd='bin/rubocop '
+  endif
 call plug#end()
 " }}}
 

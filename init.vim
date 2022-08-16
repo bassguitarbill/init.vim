@@ -147,8 +147,12 @@ call plug#begin()
 
   Plug 'edkolev/tmuxline.vim' " Style tmux to look like airline
   Plug 'edkolev/promptline.vim' " Style zsh to look like airline
+
   Plug 'powerline/powerline-fonts'
   let g:tmuxline_powerline_separators = 1
+
+  Plug 'ngmy/vim-rubocop'
+  let g:vimrubocop_rubocop_cmd='bin/rubocop '
 call plug#end()
 " }}}
 

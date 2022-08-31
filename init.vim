@@ -65,6 +65,15 @@ nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
 vnoremap <leader>" <esc>`>a"<esc>`<i"<esc>`<v`>l
 " }}}
 
+vnoremap <leader>rcd <esc>`<O# rubocop:disable asdf<esc>`>o# rubocop:enable asdf<esc>V`<k:s<kDivide>asdf<kDivide>
+function WrapRubocopDisable()
+  let rule = "Lint/EmptyBlock"
+  let command = "<esc>`<O# rubocop:disable " . rule . "<esc>`>o# rubocop:enable " . rule . "<CR>"
+  echo command
+  exe command
+endfunction
+vnoremap <leader>zxcv :call WrapRubocopDisable()<CR>
+
 " === === Cruel Mappings === === {{{
 let cruel=0 " someday...
 if cruel

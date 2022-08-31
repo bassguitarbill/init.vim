@@ -127,7 +127,13 @@ augroup filetype_ruby
   autocmd!
   autocmd FileType ruby nnoremap <buffer> <localleader>c I#<esc>
   autocmd FileType ruby iabbrev fsl # frozen_string_literal: true
+  autocmd FileType ruby nnoremap <buffer> <leader>rsp :call RunRSpec()<CR>
 augroup END
+function RunRSpec()
+  compiler rspec
+  make
+  copen
+endfunction
 " }}}
 
 " === === HTML settings === === {{{

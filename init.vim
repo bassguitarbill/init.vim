@@ -164,8 +164,24 @@ call plug#begin()
   if stridx(getcwd(), "nitro-web") >= 0
     let g:vimrubocop_rubocop_cmd='bin/rubocop '
   endif
+
+  Plug 'vimwiki/vimwiki'
 call plug#end()
 " }}}
+
+" === === Vimwiki Customization === ==={{{
+function! VimwikiLinkHandler(link)
+  " TODO check if the file is local before trying to open it
+  execute 'edit ' . a:link
+  nnoremap <buffer> <BS> :e #<CR>
+  return 1
+endfunction
+
+let wiki = {}
+let wiki.path = '~/vimwiki/'
+let wiki.nested_syntaxes = {'ruby': 'ruby'}
+let g:vimwiki_list = [wiki]
+"}}}
 
 " === === Coc Customization === === {{{
 highlight FgCocErrorFloatBgCocFloating guifg=#800000
